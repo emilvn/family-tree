@@ -1,6 +1,7 @@
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import FamilyTree from "./containers/FamilyTree.tsx";
 import Statistics from "./containers/Statistics.tsx";
+import {henning} from "../data/family.ts";
 
 function App() {
 
@@ -8,7 +9,7 @@ function App() {
 		<BrowserRouter>
 			<NavBar/>
 			<Routes>
-				<Route path={"/"} element={<FamilyTree/>}/>
+				<Route path={"/"} element={<FamilyTree familyMember={henning}/>}/>
 				<Route path={"/statistics"} element={<Statistics/>}/>
 			</Routes>
 		</BrowserRouter>
