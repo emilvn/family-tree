@@ -44,7 +44,7 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 						orientation={nodeWidth > nodeHeight ? "horizontal" : "vertical"}
 						translate={
 							nodeWidth > nodeHeight
-								? {x: nodeWidth / 2, y: nodeHeight * 1.75}
+								? {x: nodeWidth, y: nodeHeight * 1.5}
 								: {x: nodeWidth, y: nodeHeight / 2}
 						}
 						collapsible={false}
@@ -57,8 +57,8 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 							<FamilyMember
 								nodeData={nodeDatum}
 								foreignObjectProps={{
-									x: -nodeWidth / 3,
-									y: -nodeHeight / 2.25,
+									x: -nodeWidth / 2,
+									y: -nodeHeight / 3.5,
 									width: nodeWidth,
 									height: nodeHeight
 
