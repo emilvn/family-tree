@@ -42,7 +42,7 @@ function AgeBarChart() {
 	return <OuterCard>
 		<div className="p-4 h-[60vh]">
 			<div className="text-inact-green text-3xl text-center">Ages in the family</div>
-			<div className="h-full pb-8 w-full">
+			<div className="h-full pb-8 max-sm:pb-14 w-full">
 				<Bar data={data} options={options}/>
 			</div>
 		</div>
