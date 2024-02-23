@@ -54,17 +54,17 @@ function ShoeSizeStatistics({familyMembers}: IShoeSizeStatisticsProps) {
 
 	return (
 		<OuterCard>
-			<div className="text-inact-green text-3xl text-center pt-4">
-				Average Shoe sizes
-				<FaShoePrints className="text-4xl inline ml-2"/>
+			<div className="text-inact-green text-3xl text-center pt-4 max-md:pb-10">
+				Average shoe sizes
+				<FaShoePrints className="text-4xl inline ml-2 max-md:hidden"/>
 			</div>
-			<div className="flex justify-evenly items-center h-full">
-				<div className="text-9xl font-extrabold flex items-center">
-					<IoIosMale className="text-7xl"/>
+			<div className="flex justify-evenly items-center h-full max-md: pb-10">
+				<div className="md:text-9xl text-4xl font-extrabold flex items-center">
+					<IoIosMale className="md:text-7xl"/>
 					{averageM}
 				</div>
-				<div className="text-9xl font-extrabold flex items-center">
-					<IoIosFemale className="text-7xl"/>
+				<div className="md:text-9xl text-4xl font-extrabold flex items-center">
+					<IoIosFemale className="md:text-7xl"/>
 					{averageF}
 				</div>
 			</div>

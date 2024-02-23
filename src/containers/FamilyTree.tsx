@@ -6,13 +6,29 @@ import {SVGProps, useEffect, useState} from "react";
 import {IoIosFemale, IoIosMale} from "react-icons/io";
 
 function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
-	const [nodeWidth, setNodeWidth] = useState(window.innerWidth / 4);
-	const [nodeHeight, setNodeHeight] = useState(window.innerHeight / 4);
+	const MIN_NODE_WIDTH = 200;
+	const MIN_NODE_HEIGHT = 200;
+	const MAX_NODE_WIDTH = 300;
+	const MAX_NODE_HEIGHT = 400;
+	const MAX_ZOOM = 1.5;
+	const MIN_ZOOM = 0.65;
+
+	const zoom = Math.min(Math.max(window.innerWidth/1920, MIN_ZOOM), MAX_ZOOM);
+	const initialWidth = Math.max(window.innerWidth / 4, MIN_NODE_WIDTH);
+	const initialHeight = Math.max(window.innerHeight / 4, MIN_NODE_HEIGHT);
+
+	const [nodeWidth, setNodeWidth] = useState(Math.min(initialWidth, MAX_NODE_WIDTH));
+	const [nodeHeight, setNodeHeight] = useState(Math.min(initialHeight, MAX_NODE_HEIGHT));
+	const [zoomLevel, setZoomLevel] = useState(zoom);
 
 	useEffect(() => {
 		function handleResize() {
-			setNodeWidth(window.innerWidth / 4);
-			setNodeHeight(window.innerHeight / 4);
+			const newWidth = Math.max(window.innerWidth / 4, MIN_NODE_WIDTH);
+			const newHeight = Math.max(window.innerHeight / 4, MIN_NODE_HEIGHT);
+			const newZoom = Math.min(Math.max(window.innerWidth/1920, MIN_ZOOM), MAX_ZOOM);
+			setNodeWidth(Math.min(newWidth, MAX_NODE_WIDTH));
+			setNodeHeight(Math.min(newHeight, MIN_NODE_HEIGHT));
+			setZoomLevel(newZoom);
 		}
 
 		window.addEventListener('resize', handleResize);
@@ -28,11 +44,15 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 						orientation={nodeWidth > nodeHeight ? "horizontal" : "vertical"}
 						translate={
 							nodeWidth > nodeHeight
-								? {x: nodeWidth / 2, y: nodeHeight * 1.65}
-								: {x: nodeWidth * 1.65, y: nodeHeight/2}
+								? {x: nodeWidth / 2, y: nodeHeight * 1.75}
+								: {x: nodeWidth, y: nodeHeight / 2}
 						}
 						collapsible={false}
-						nodeSize={{x: nodeWidth * 1.1, y: nodeHeight}}
+						nodeSize={
+							nodeWidth > nodeHeight
+								? {x: nodeWidth * 2, y: nodeHeight}
+								: {x: nodeWidth, y: nodeHeight * 1.5}
+						}
 						renderCustomNodeElement={({nodeDatum}) => (
 							<FamilyMember
 								nodeData={nodeDatum}
@@ -44,6 +64,7 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 
 								}}/>
 						)}
+						zoom={zoomLevel}
 					/>
 				</div>
 			</OuterCard>

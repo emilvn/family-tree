@@ -2,7 +2,7 @@ import {PropsWithChildren} from "react";
 
 function TreeCard({children}:PropsWithChildren) {
 	return (
-		<div className="flex flex-col rounded-3xl text-inact-green w-56 max-w-[25vw] h-[20vh] min-h-40 p-4 bg-slate-100">
+		<div className="flex flex-col rounded-3xl text-inact-green p-4 bg-slate-100">
 			{children}
 		</div>
 	);
