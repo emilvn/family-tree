@@ -3,6 +3,7 @@ import FamilyTree from "./containers/FamilyTree.tsx";
 import Statistics from "./containers/Statistics.tsx";
 import {henning} from "../data/family.ts";
 import {useEffect, useState} from "react";
+import {MdFamilyRestroom} from "react-icons/md";
 
 function App() {
 
@@ -30,7 +31,7 @@ function NavBar() {
 
 	return (
 		<nav className="p-4 fixed w-full flex gap-4 items-center justify-between select-none">
-			<h1 className="text-5xl font-bold text-inact-green">Henning</h1>
+			<h1 className="text-5xl font-bold text-inact-green flex items-center gap-2">Family tree<MdFamilyRestroom/></h1>
 			<div className="flex gap-4 text-slate-600 text-xl">
 				<Link
 					className={`${location === "family-tree" ? "text-orange-600" : "hover:text-orange-600"}  transition-colors`}

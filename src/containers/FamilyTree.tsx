@@ -6,17 +6,18 @@ import {SVGProps, useEffect, useState} from "react";
 import {IoIosFemale, IoIosMale} from "react-icons/io";
 
 function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
-	const [nodeWidth, setNodeWidth] = useState(window.innerWidth/4);
-	const [nodeHeight, setNodeHeight] = useState(window.innerHeight/4);
+	const [nodeWidth, setNodeWidth] = useState(window.innerWidth / 4);
+	const [nodeHeight, setNodeHeight] = useState(window.innerHeight / 4);
 
 	useEffect(() => {
 		function handleResize() {
-			setNodeWidth(window.innerWidth/4);
-			setNodeHeight(window.innerHeight/4);
+			setNodeWidth(window.innerWidth / 4);
+			setNodeHeight(window.innerHeight / 4);
 		}
+
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
-	} ,[]);
+	}, []);
 
 	return (
 		<PageLayout>
@@ -24,16 +25,20 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 				<div className="h-[80vh]">
 					<Tree
 						data={familyMember.getTreeData()}
-						orientation="horizontal"
-						translate={{x: nodeWidth/2, y: nodeHeight*1.65}}
+						orientation={nodeWidth > nodeHeight ? "horizontal" : "vertical"}
+						translate={
+							nodeWidth > nodeHeight
+								? {x: nodeWidth / 2, y: nodeHeight * 1.65}
+								: {x: nodeWidth * 1.65, y: nodeHeight/2}
+						}
 						collapsible={false}
-						nodeSize={{x: nodeWidth*1.1, y: nodeHeight}}
+						nodeSize={{x: nodeWidth * 1.1, y: nodeHeight}}
 						renderCustomNodeElement={({nodeDatum}) => (
 							<FamilyMember
 								nodeData={nodeDatum}
 								foreignObjectProps={{
-									x: -nodeWidth/3,
-									y: -nodeHeight/2.25,
+									x: -nodeWidth / 3,
+									y: -nodeHeight / 2.25,
 									width: nodeWidth,
 									height: nodeHeight
 
@@ -51,7 +56,7 @@ interface IFamilyMemberProps {
 	foreignObjectProps: SVGProps<SVGForeignObjectElement>;
 }
 
-function FamilyMember({nodeData, foreignObjectProps ={}}: IFamilyMemberProps) {
+function FamilyMember({nodeData, foreignObjectProps = {}}: IFamilyMemberProps) {
 	return (
 		<>
 			<foreignObject {...foreignObjectProps}>
