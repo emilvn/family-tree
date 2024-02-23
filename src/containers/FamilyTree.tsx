@@ -11,7 +11,7 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 				<Tree
 					data={familyMember.getTreeData()}
 					orientation="horizontal"
-					translate={{x: 200, y: 200}}
+					translate={{x: 300, y: 500}}
 					collapsible={false}
 					nodeSize={{x: 300, y: 200}}
 					renderCustomNodeElement={({nodeDatum}) => (
@@ -25,7 +25,7 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 
 							}}/>
 					)}
-					zoom={0.5}
+					zoom={1}
 				/>
 			</div>
 		</PageLayout>
@@ -42,7 +42,7 @@ function FamilyMember({nodeData, foreignObjectProps ={}}: IFamilyMemberProps) {
 		<>
 			<foreignObject {...foreignObjectProps}>
 				<Card>
-					<div className="font-bold text-center text-2xl mb-5">
+					<div className="font-bold text-center text-orange-600 text-2xl mb-5">
 						{nodeData.name}
 						&nbsp;
 						{nodeData.attributes?.gender === "M" ? "♂" : "♀"}
