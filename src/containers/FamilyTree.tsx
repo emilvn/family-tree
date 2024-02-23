@@ -1,7 +1,7 @@
-import PageLayout from "../components/PageLayout.tsx";
+import PageLayout from "../components/layout.tsx";
 import {IFamilyMember} from "../types.ts";
 import Tree, {TreeNodeDatum} from "react-d3-tree";
-import Card from "../components/Card.tsx";
+import {TreeCard} from "../components/cards.tsx";
 import {SVGProps, useEffect, useState} from "react";
 
 function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
@@ -52,7 +52,7 @@ function FamilyMember({nodeData, foreignObjectProps ={}}: IFamilyMemberProps) {
 	return (
 		<>
 			<foreignObject {...foreignObjectProps}>
-				<Card>
+				<TreeCard>
 					<div className="font-bold text-center text-orange-600 text-2xl mb-5">
 						{nodeData.name}
 						&nbsp;
@@ -60,7 +60,7 @@ function FamilyMember({nodeData, foreignObjectProps ={}}: IFamilyMemberProps) {
 					</div>
 					<div className="text-xl mb-5">{nodeData.attributes?.age} years old</div>
 					<div className="text-xl">Shoe size: {nodeData.attributes?.shoeSize}</div>
-				</Card>
+				</TreeCard>
 			</foreignObject>
 		</>
 	);
