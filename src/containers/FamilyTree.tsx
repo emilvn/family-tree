@@ -6,7 +6,7 @@ import {SVGProps, useEffect, useState} from "react";
 
 function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 	const [nodeWidth, setNodeWidth] = useState(window.innerWidth/4);
-	const [nodeHeight, setNodeHeight] = useState(window.innerHeight/4);
+	const [nodeHeight, setNodeHeight] = useState(window.innerHeight/5);
 
 	useEffect(() => {
 		function handleResize() {
