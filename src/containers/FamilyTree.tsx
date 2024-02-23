@@ -1,8 +1,10 @@
+import PageLayout from "../components/PageLayout.tsx";
+
 function FamilyTree() {
 	return (
-		<div>
+		<PageLayout>
 			<h1>Family Tree</h1>
-		</div>
+		</PageLayout>
 	);
 }
 

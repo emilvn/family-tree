@@ -1,9 +1,11 @@
+import PageLayout from "../components/PageLayout.tsx";
+
 function Statistics() {
 
 	return (
-		<div>
+		<PageLayout>
 			<h2>Statistics</h2>
-		</div>
+		</PageLayout>
 	);
 }
 
