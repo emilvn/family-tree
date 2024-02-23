@@ -34,8 +34,9 @@ function App() {
 				{
 					windowWidth > 768 &&
 					<>
-						<h1 className="text-5xl font-bold text-inact-green">
+						<h1 className="text-5xl font-bold text-inact-green flex items-center">
 							Henning
+							<GiFamilyTree/>
 						</h1>
 						<NavBar location={location} setLocation={setLocation}/>
 					</>
