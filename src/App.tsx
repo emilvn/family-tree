@@ -5,6 +5,7 @@ import {henning} from "../data/family.ts";
 import {useEffect, useState} from "react";
 import {CiMenuBurger} from "react-icons/ci";
 import {IoCloseOutline} from "react-icons/io5";
+import {GiFamilyTree} from "react-icons/gi";
 
 function App() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -30,16 +31,23 @@ function App() {
 	return (
 		<BrowserRouter>
 			<div className="p-4 fixed w-full flex gap-4 items-center justify-between select-none">
-				<h1 className="text-5xl font-bold text-inact-green">
-					Henning
-				</h1>
 				{
 					windowWidth > 768 &&
-					<NavBar location={location} setLocation={setLocation}/>
+					<>
+						<h1 className="text-5xl font-bold text-inact-green">
+							Henning
+						</h1>
+						<NavBar location={location} setLocation={setLocation}/>
+					</>
 				}
 				{
 					windowWidth <= 768 &&
-					<NavButton location={location} setLocation={setLocation}/>
+					<>
+						<h1 className="text-5xl font-bold text-inact-green">
+							<GiFamilyTree/>
+						</h1>
+						<NavButton location={location} setLocation={setLocation}/>
+					</>
 				}
 			</div>
 			<Routes>
