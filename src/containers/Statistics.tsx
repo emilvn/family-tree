@@ -5,7 +5,9 @@ import {family} from "../../data/family.ts";
 import "chart.js/auto";
 import type {IFamilyMember} from "../types.ts";
 import {calculateAverageShoeSize} from "../utils/statistics.ts";
-import {InnerCard, OuterCard} from "../components/cards.tsx";
+import {OuterCard} from "../components/cards.tsx";
+import {FaShoePrints} from "react-icons/fa";
+import {IoIosFemale, IoIosMale} from "react-icons/io";
 
 function Statistics() {
 	return (
@@ -33,8 +35,10 @@ function AgeBarChart() {
 	};
 
 	return <OuterCard>
-		<div className="text-slate-900 text-2xl text-center">Ages of the family</div>
-		<Bar data={data}/>
+		<div className="p-4">
+			<div className="text-inact-green text-3xl text-center">Ages in the family</div>
+			<Bar data={data}/>
+		</div>
 	</OuterCard>
 }
 
@@ -50,10 +54,19 @@ function ShoeSizeStatistics({familyMembers}: IShoeSizeStatisticsProps) {
 
 	return (
 		<OuterCard>
-			<div className="text-slate-900 text-2xl text-center">Average Shoe sizes</div>
-			<div className="flex justify-evenly items-center mt-10">
-				<InnerCard>♂ {averageM}</InnerCard>
-				<InnerCard>♀ {averageF}</InnerCard>
+			<div className="text-inact-green text-3xl text-center pt-4">
+				Average Shoe sizes
+				<FaShoePrints className="text-4xl inline ml-2"/>
+			</div>
+			<div className="flex justify-evenly items-center h-full">
+				<div className="text-9xl font-extrabold flex items-center">
+					<IoIosMale className="text-7xl"/>
+					{averageM}
+				</div>
+				<div className="text-9xl font-extrabold flex items-center">
+					<IoIosFemale className="text-7xl"/>
+					{averageF}
+				</div>
 			</div>
 		</OuterCard>
 	);
