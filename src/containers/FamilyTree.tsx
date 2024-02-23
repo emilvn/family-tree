@@ -2,30 +2,41 @@ import PageLayout from "../components/PageLayout.tsx";
 import {IFamilyMember} from "../types.ts";
 import Tree, {TreeNodeDatum} from "react-d3-tree";
 import Card from "../components/Card.tsx";
-import {SVGProps} from "react";
+import {SVGProps, useEffect, useState} from "react";
 
 function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
+	const [nodeWidth, setNodeWidth] = useState(window.innerWidth/4);
+	const [nodeHeight, setNodeHeight] = useState(window.innerHeight/4);
+
+	useEffect(() => {
+		function handleResize() {
+			setNodeWidth(window.innerWidth/4);
+			setNodeHeight(window.innerHeight/4);
+		}
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	} ,[]);
+
 	return (
 		<PageLayout>
 			<div className="flex items-center p-4 justify-center h-[calc(100vh-80px)]">
 				<Tree
 					data={familyMember.getTreeData()}
 					orientation="horizontal"
-					translate={{x: 300, y: 500}}
+					translate={{x: nodeWidth, y: nodeHeight*1.75}}
 					collapsible={false}
-					nodeSize={{x: 300, y: 200}}
+					nodeSize={{x: nodeWidth*1.1, y: nodeHeight}}
 					renderCustomNodeElement={({nodeDatum}) => (
 						<FamilyMember
 							nodeData={nodeDatum}
 							foreignObjectProps={{
 								x: -200,
 								y: -100,
-								width: 300,
-								height: 300
+								width: nodeWidth,
+								height: nodeHeight
 
 							}}/>
 					)}
-					zoom={1}
 				/>
 			</div>
 		</PageLayout>
