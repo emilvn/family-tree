@@ -12,7 +12,7 @@ function PageLayout({children}: PropsWithChildren) {
 
 function Footer() {
 	return <footer className="bg-inact-green h-80 w-full p-4 flex justify-evenly items-center max-lg:flex-col max-lg:items-start gap-4">
-		<div className="flex flex-col gap-2 text-slate-200 text-2xl">
+		<div className="flex flex-col gap-2 text-slate-200 text-2xl max-sm:text-lg">
 			<div className="font-semibold">
 				By Emil V. Nielsen
 			</div>
@@ -21,7 +21,7 @@ function Footer() {
 				className="text-orange-600">emilvnielsen@hotmail.com</a>
 			</div>
 		</div>
-		<div className="text-2xl text-slate-200 flex flex-col gap-2">
+		<div className="text-2xl max-sm:text-xl text-slate-200 flex flex-col gap-2">
 			<div className="font-semibold">Socials</div>
 			<SocialsLink href={"https://github.com/emilvn"}>
 				<FaGithub className="cursor-pointer text-4xl text-slate-200"/> Github
