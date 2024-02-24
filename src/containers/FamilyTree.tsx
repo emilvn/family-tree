@@ -45,7 +45,7 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 						translate={
 							nodeWidth > nodeHeight
 								? {x: nodeWidth / 2, y: nodeHeight * 1.5}
-								: {x: nodeWidth, y: nodeHeight / 2}
+								: {x: nodeWidth / 1.25, y: nodeHeight / 2}
 						}
 						collapsible={false}
 						nodeSize={
