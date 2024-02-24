@@ -1,7 +1,7 @@
-import { PropsWithChildren, useEffect, useState } from "react";
+import { type PropsWithChildren, useEffect, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { GiFamilyTree } from "react-icons/gi";
-import { INavBarProps } from "../types/props.types.ts";
+import type { INavBarProps } from "../types/props.types.ts";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";

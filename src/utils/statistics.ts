@@ -1,4 +1,4 @@
-import { IFamilyMember } from "../types/models.types.ts";
+import type { IFamilyMember } from "../types/models.types.ts";
 
 function calculateAverageShoeSize(familyMembers: IFamilyMember[]) {
 	let average = 0;

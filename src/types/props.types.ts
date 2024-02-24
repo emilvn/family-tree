@@ -1,5 +1,5 @@
-import { TreeNodeDatum } from "react-d3-tree";
-import { SVGProps } from "react";
+import type { TreeNodeDatum } from "react-d3-tree";
+import type { SVGProps } from "react";
 
 export interface IRenderNodeProps {
 	nodeDatum: TreeNodeDatum;
