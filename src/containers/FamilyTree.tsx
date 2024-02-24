@@ -102,6 +102,7 @@ interface IRenderNodeProps {
 	nodeHeight: number;
 	isHorizontal: boolean;
 }
+
 function renderFamilyMemberNode({
 	nodeDatum,
 	nodeWidth,
