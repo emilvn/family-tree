@@ -67,8 +67,14 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
 						orientation={isHorizontal ? "horizontal" : "vertical"}
 						translate={
 							isHorizontal
-								? { x: nodeWidth / 2, y: nodeHeight * 1.5 }
-								: { x: nodeWidth / 1.25, y: nodeHeight / 2 }
+								? {
+										x: nodeWidth,
+										y: window.innerHeight / 2
+									}
+								: {
+										x: window.innerWidth / 2,
+										y: nodeHeight
+									}
 						}
 						collapsible={false}
 						nodeSize={
@@ -79,14 +85,27 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
 						renderCustomNodeElement={({ nodeDatum }) => (
 							<FamilyMember
 								nodeData={nodeDatum}
-								foreignObjectProps={{
-									x: -nodeWidth / 2,
-									y: -nodeHeight / 3.5,
-									width: nodeWidth,
-									height: nodeHeight
-								}}
+								foreignObjectProps={
+									isHorizontal
+										? {
+												x: -nodeWidth / 2,
+												y: -nodeHeight / 2.75,
+												width: nodeWidth,
+												height: nodeHeight
+											}
+										: {
+												x: -nodeWidth / 2,
+												y: -nodeHeight / 2,
+												width: nodeWidth,
+												height: nodeHeight
+											}
+								}
 							/>
 						)}
+						onLinkClick={(link) => {
+							console.log("Link clicked", link);
+						}}
+						hasInteractiveNodes={true}
 						zoom={zoomLevel}
 					/>
 				</div>
@@ -136,7 +155,7 @@ interface IToolBarProps {
 
 function ToolBar({ isHorizontal, setIsHorizontal }: IToolBarProps) {
 	return (
-		<div className="absolute bottom-0 right-0 flex gap-2 bg-slate-200 opacity-50 rounded-tl-3xl w-40 hover:bg-slate-300">
+		<div className="absolute bottom-0 right-0 flex gap-2 bg-slate-200 bg-opacity-50 backdrop-blur-sm rounded-tl-3xl w-40 hover:bg-slate-300">
 			<div
 				className="flex justify-between gap-2 select-none cursor-pointer w-full h-full p-4"
 				onClick={() => setIsHorizontal(!isHorizontal)}
