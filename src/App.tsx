@@ -126,7 +126,7 @@ function NavButton({ location, setLocation }: INavBarProps) {
 						/>
 						<IoCloseOutline
 							onClick={() => setIsOpen(!isOpen)}
-							className="text-4xl hover:text-orange-600 text-inact-green cursor pointer"
+							className="text-4xl hover:text-orange-600 text-inact-green cursor-pointer"
 						/>
 					</div>
 				</>

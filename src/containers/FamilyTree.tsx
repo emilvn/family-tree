@@ -62,7 +62,6 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
 						setIsHorizontal={setIsHorizontal}
 					/>
 					<Tree
-						svgClassName={"hover:[&+h2]:hidden"}
 						data={familyMember.getTreeData()}
 						orientation={isHorizontal ? "horizontal" : "vertical"}
 						translate={
@@ -76,41 +75,58 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
 										y: nodeHeight
 									}
 						}
-						collapsible={false}
 						nodeSize={
 							isHorizontal
 								? { x: nodeWidth * 2, y: nodeHeight }
 								: { x: nodeWidth, y: nodeHeight * 1.5 }
 						}
-						renderCustomNodeElement={({ nodeDatum }) => (
-							<FamilyMember
-								nodeData={nodeDatum}
-								foreignObjectProps={
-									isHorizontal
-										? {
-												x: -nodeWidth / 2,
-												y: -nodeHeight / 2.75,
-												width: nodeWidth,
-												height: nodeHeight
-											}
-										: {
-												x: -nodeWidth / 2,
-												y: -nodeHeight / 2,
-												width: nodeWidth,
-												height: nodeHeight
-											}
-								}
-							/>
-						)}
-						onLinkClick={(link) => {
-							console.log("Link clicked", link);
-						}}
-						hasInteractiveNodes={true}
+						renderCustomNodeElement={({ nodeDatum }) =>
+							renderFamilyMemberNode({
+								nodeDatum,
+								nodeWidth,
+								nodeHeight,
+								isHorizontal
+							})
+						}
 						zoom={zoomLevel}
 					/>
 				</div>
 			</OuterCard>
 		</PageLayout>
+	);
+}
+
+interface IRenderNodeProps {
+	nodeDatum: TreeNodeDatum;
+	nodeWidth: number;
+	nodeHeight: number;
+	isHorizontal: boolean;
+}
+function renderFamilyMemberNode({
+	nodeDatum,
+	nodeWidth,
+	nodeHeight,
+	isHorizontal
+}: IRenderNodeProps) {
+	return (
+		<FamilyMember
+			nodeData={nodeDatum}
+			foreignObjectProps={
+				isHorizontal
+					? {
+							x: -nodeWidth / 2,
+							y: -nodeHeight / 2.75,
+							width: nodeWidth,
+							height: nodeHeight
+						}
+					: {
+							x: -nodeWidth / 2,
+							y: -nodeHeight / 2,
+							width: nodeWidth,
+							height: nodeHeight
+						}
+			}
+		/>
 	);
 }
 
