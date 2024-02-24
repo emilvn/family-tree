@@ -4,4 +4,5 @@
 
 body{
     @apply font-mono;
+    @apply bg-inact-violet;
 }
