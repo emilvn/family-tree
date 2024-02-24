@@ -62,22 +62,29 @@ function App() {
 interface INavBarProps {
 	location: "family-tree" | "statistics";
 	setLocation: (location: "family-tree" | "statistics") => void;
+	onClick?: () => void;
 }
 
-function NavBar({location, setLocation}: INavBarProps) {
+function NavBar({location, onClick, setLocation}: INavBarProps) {
 	return (
 		<nav className="flex gap-4 text-slate-600 text-xl">
 			<Link
 				className={`${location === "family-tree" ? "text-orange-600" : "hover:text-orange-600"}  transition-colors`}
 				to={"/"}
-				onClick={() => setLocation("family-tree")}
+				onClick={() => {
+					setLocation("family-tree");
+					if (onClick) onClick();
+				}}
 			>
-				Family Tree
+				Family-tree
 			</Link>
 			<Link
 				className={`${location === "statistics" ? "text-orange-600" : "hover:text-orange-600"} transition-colors`}
 				to={"/statistics"}
-				onClick={() => setLocation("statistics")}
+				onClick={() => {
+					setLocation("statistics")
+					if (onClick) onClick();
+				}}
 			>
 				Statistics
 			</Link>
@@ -88,7 +95,7 @@ function NavBar({location, setLocation}: INavBarProps) {
 function NavButton({location, setLocation}: INavBarProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<nav>
+		<div>
 			{!isOpen &&
 				<CiMenuBurger
 					onClick={() => setIsOpen(!isOpen)}
@@ -97,31 +104,19 @@ function NavButton({location, setLocation}: INavBarProps) {
 			}
 			{isOpen && <>
 				<div className="flex gap-4 text-slate-600 text-xl max-sm:text-sm">
-					<Link
-						className={`${location === "family-tree" ? "text-orange-600" : "hover:text-orange-600"}  transition-colors`}
-						to={"/"}
+					<NavBar
+						location={location}
+						setLocation={setLocation}
 						onClick={() => {
-							setIsOpen(false)
-							setLocation("family-tree")
-						}}
-					>
-						Family Tree
-					</Link>
-					<Link
-						className={`${location === "statistics" ? "text-orange-600" : "hover:text-orange-600"} transition-colors`}
-						to={"/statistics"}
-						onClick={() => {
-							setIsOpen(false)
-							setLocation("statistics")
-						}}
-					>
-						Statistics
-					</Link>
-					<IoCloseOutline onClick={() => setIsOpen(!isOpen)} className="text-4xl hover:text-orange-600 text-inact-green"/>
+							setIsOpen(!isOpen)
+						}
+						}/>
+					<IoCloseOutline onClick={() => setIsOpen(!isOpen)}
+									className="text-4xl hover:text-orange-600 text-inact-green"/>
 				</div>
 			</>
 			}
-		</nav>
+		</div>
 	);
 }
 
