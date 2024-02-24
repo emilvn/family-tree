@@ -38,8 +38,12 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 	return (
 		<PageLayout>
 			<OuterCard>
-				<div className="h-[80vh]">
+				<div className="h-[80vh] relative">
+					<div className="absolute w-full text-center text-3xl max-sm:text-xl text-inact-green">
+						Family Tree
+					</div>
 					<Tree
+						svgClassName={"hover:[&+h2]:hidden"}
 						data={familyMember.getTreeData()}
 						orientation={nodeWidth > nodeHeight ? "horizontal" : "vertical"}
 						translate={
