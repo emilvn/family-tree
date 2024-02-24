@@ -30,7 +30,7 @@ function App() {
 
     return (
         <BrowserRouter>
-            <div className="p-4 fixed w-full flex gap-4 items-center justify-between select-none">
+            <div className="p-4 fixed w-full flex gap-4 items-center justify-between select-none z-20">
                 {
                     windowWidth > 768 &&
                     <>
