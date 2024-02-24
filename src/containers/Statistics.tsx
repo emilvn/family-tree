@@ -2,7 +2,7 @@ import PageLayout from "../components/layout.tsx";
 import { Bar } from "react-chartjs-2";
 import type { ChartData, ChartOptions } from "chart.js";
 import "chart.js/auto";
-import type { IFamilyMember } from "../types/types.ts";
+import type { IFamilyMember } from "../types/models.types.ts";
 import { calculateAverageShoeSize } from "../utils/statistics.ts";
 import { OuterCard } from "../components/cards.tsx";
 import { FaShoePrints } from "react-icons/fa";
@@ -55,11 +55,11 @@ function AgeBarChart({ family }: { family: IFamilyMember[] }) {
 	);
 }
 
-interface IShoeSizeStatisticsProps {
+function ShoeSizeStatistics({
+	familyMembers
+}: {
 	familyMembers: IFamilyMember[];
-}
-
-function ShoeSizeStatistics({ familyMembers }: IShoeSizeStatisticsProps) {
+}) {
 	const females = familyMembers.filter((m) => m.gender === "F");
 	const males = familyMembers.filter((m) => m.gender === "M");
 	const averageF = calculateAverageShoeSize(females);

@@ -41,11 +41,7 @@ function Footer() {
 	);
 }
 
-interface ISocialsLinkProps extends PropsWithChildren {
-	href: string;
-}
-
-function SocialsLink({ children, href }: ISocialsLinkProps) {
+function SocialsLink({ children, href }: PropsWithChildren & { href: string }) {
 	return (
 		<a
 			href={href}

@@ -7,6 +7,6 @@ const bente = new FamilyMember("Bente", 46, 37, [lars], "F");
 const viggo = new FamilyMember("Viggo", 47, 42, [iben], "M");
 const henning = new FamilyMember("Henning", 65, 44, [viggo, bente], "M");
 
-const family : FamilyMember[] = [henning, viggo, bente, iben, lars];
+const family: FamilyMember[] = [henning, viggo, bente, iben, lars];
 
-export { family, henning};
+export { family, henning };

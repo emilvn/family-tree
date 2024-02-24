@@ -14,10 +14,4 @@ function OuterCard({ children }: PropsWithChildren) {
 	);
 }
 
-function InnerCard({ children }: PropsWithChildren) {
-	return (
-		<div className="bg-orange-300 p-20 rounded-xl text-4xl">{children}</div>
-	);
-}
-
-export { TreeCard, OuterCard, InnerCard };
+export { TreeCard, OuterCard };

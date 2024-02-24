@@ -1,10 +1,15 @@
 import PageLayout from "../components/layout.tsx";
-import { IFamilyMember } from "../types/types.ts";
-import Tree, { TreeNodeDatum } from "react-d3-tree";
+import type { IFamilyMember } from "../types/models.types.ts";
+import Tree from "react-d3-tree";
 import { OuterCard, TreeCard } from "../components/cards.tsx";
-import { SVGProps, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosFemale, IoIosMale } from "react-icons/io";
 import { GiFamilyTree } from "react-icons/gi";
+import type {
+	IFamilyMemberProps,
+	IRenderNodeProps,
+	IToolBarProps
+} from "../types/props.types.ts";
 
 function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
 	const MIN_NODE_WIDTH = 200;
@@ -96,13 +101,6 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
 	);
 }
 
-interface IRenderNodeProps {
-	nodeDatum: TreeNodeDatum;
-	nodeWidth: number;
-	nodeHeight: number;
-	isHorizontal: boolean;
-}
-
 function renderFamilyMemberNode({
 	nodeDatum,
 	nodeWidth,
@@ -129,11 +127,6 @@ function renderFamilyMemberNode({
 			}
 		/>
 	);
-}
-
-interface IFamilyMemberProps {
-	nodeData: TreeNodeDatum;
-	foreignObjectProps: SVGProps<SVGForeignObjectElement>;
 }
 
 function FamilyMember({
@@ -163,11 +156,6 @@ function FamilyMember({
 			</foreignObject>
 		</>
 	);
-}
-
-interface IToolBarProps {
-	isHorizontal: boolean;
-	setIsHorizontal: (isHorizontal: boolean) => void;
 }
 
 function ToolBar({ isHorizontal, setIsHorizontal }: IToolBarProps) {

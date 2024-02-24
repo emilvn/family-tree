@@ -1,4 +1,4 @@
-import { IFamilyMember, ITreeData } from "../types/types.ts";
+import { IFamilyMember, ITreeData } from "../types/models.types.ts";
 
 class FamilyMember implements IFamilyMember {
 	name: string;

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
 import { GiFamilyTree } from "react-icons/gi";
+import { INavBarProps } from "./types/props.types.ts";
 
 function App() {
 	return (
@@ -23,12 +24,6 @@ function App() {
 			</Routes>
 		</BrowserRouter>
 	);
-}
-
-interface INavBarProps {
-	location: "family-tree" | "statistics";
-	setLocation: (location: "family-tree" | "statistics") => void;
-	onClick?: () => void;
 }
 
 function Nav() {
