@@ -94,6 +94,7 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
 							})
 						}
 						zoom={zoomLevel}
+						pathFunc={"step"}
 					/>
 				</div>
 			</OuterCard>
