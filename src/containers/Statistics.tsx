@@ -1,7 +1,6 @@
 import PageLayout from "../components/layout.tsx";
 import { Bar } from "react-chartjs-2";
 import type { ChartData, ChartOptions } from "chart.js";
-import { family } from "../../data/family.ts";
 import "chart.js/auto";
 import type { IFamilyMember } from "../types/types.ts";
 import { calculateAverageShoeSize } from "../utils/statistics.ts";
@@ -9,18 +8,18 @@ import { OuterCard } from "../components/cards.tsx";
 import { FaShoePrints } from "react-icons/fa";
 import { IoIosFemale, IoIosMale } from "react-icons/io";
 
-function Statistics() {
+function Statistics({ family }: { family: IFamilyMember[] }) {
 	return (
 		<PageLayout>
 			<div className="flex gap-4 max-lg:flex-col">
-				<AgeBarChart />
+				<AgeBarChart family={family} />
 				<ShoeSizeStatistics familyMembers={family} />
 			</div>
 		</PageLayout>
 	);
 }
 
-function AgeBarChart() {
+function AgeBarChart({ family }: { family: IFamilyMember[] }) {
 	const names = family.map((member) => member.name);
 	const data: ChartData<"bar"> = {
 		labels: names,
