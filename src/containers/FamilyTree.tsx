@@ -1,5 +1,5 @@
 import PageLayout from "../components/layout.tsx";
-import { IFamilyMember } from "../types.ts";
+import { IFamilyMember } from "../types/types.ts";
 import Tree, { TreeNodeDatum } from "react-d3-tree";
 import { OuterCard, TreeCard } from "../components/cards.tsx";
 import { SVGProps, useEffect, useState } from "react";
