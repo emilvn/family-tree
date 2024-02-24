@@ -114,9 +114,9 @@ interface IToolBarProps {
 
 function ToolBar({ isHorizontal, setIsHorizontal }: IToolBarProps) {
     return (
-        <div className="absolute bottom-0 right-0 flex gap-2 bg-slate-200 opacity-30 p-2 rounded-tl-3xl w-40">
+        <div className="absolute bottom-0 right-0 flex gap-2 bg-slate-200 opacity-30 rounded-tl-3xl w-40 hover:bg-slate-300">
             <div
-                className="flex justify-between gap-2 select-none p-2 rounded-full cursor-pointer w-full"
+                className="flex justify-between gap-2 select-none cursor-pointer w-full h-full p-4"
                 onClick={() => setIsHorizontal(!isHorizontal)}
             >
                 <GiFamilyTree
@@ -127,8 +127,8 @@ function ToolBar({ isHorizontal, setIsHorizontal }: IToolBarProps) {
                 <div>
                     {
                         isHorizontal
-                            ? "Horizontal"
-                            : "Vertical"
+                            ? "Vertical"
+                            : "Horizontal"
                     }
                 </div>
             </div>
