@@ -13,7 +13,7 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 	const MAX_ZOOM = 1.5;
 	const MIN_ZOOM = 0.65;
 
-	const zoom = Math.min(Math.max(window.innerWidth/1920, MIN_ZOOM), MAX_ZOOM);
+	const zoom = Math.min(Math.max(window.innerWidth / 1920, MIN_ZOOM), MAX_ZOOM);
 	const initialWidth = Math.max(window.innerWidth / 4, MIN_NODE_WIDTH);
 	const initialHeight = Math.max(window.innerHeight / 4, MIN_NODE_HEIGHT);
 
@@ -25,7 +25,7 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 		function handleResize() {
 			const newWidth = Math.max(window.innerWidth / 4, MIN_NODE_WIDTH);
 			const newHeight = Math.max(window.innerHeight / 4, MIN_NODE_HEIGHT);
-			const newZoom = Math.min(Math.max(window.innerWidth/1920, MIN_ZOOM), MAX_ZOOM);
+			const newZoom = Math.min(Math.max(window.innerWidth / 1920, MIN_ZOOM), MAX_ZOOM);
 			setNodeWidth(Math.min(newWidth, MAX_NODE_WIDTH));
 			setNodeHeight(Math.min(newHeight, MIN_NODE_HEIGHT));
 			setZoomLevel(newZoom);
@@ -44,7 +44,7 @@ function FamilyTree({familyMember}: { familyMember: IFamilyMember }) {
 						orientation={nodeWidth > nodeHeight ? "horizontal" : "vertical"}
 						translate={
 							nodeWidth > nodeHeight
-								? {x: nodeWidth, y: nodeHeight * 1.5}
+								? {x: nodeWidth / 2, y: nodeHeight * 1.5}
 								: {x: nodeWidth, y: nodeHeight / 2}
 						}
 						collapsible={false}
