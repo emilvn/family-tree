@@ -99,7 +99,7 @@ function NavButton({ location, setLocation }: INavBarProps) {
             {!isOpen &&
                 <CiMenuBurger
                     onClick={() => setIsOpen(!isOpen)}
-                    className="text-4xl hover:text-orange-600 text-inact-green"
+                    className="text-4xl hover:text-orange-600 text-inact-green cursor-pointer"
                 />
             }
             {isOpen && <>
@@ -112,7 +112,7 @@ function NavButton({ location, setLocation }: INavBarProps) {
                         }
                         } />
                     <IoCloseOutline onClick={() => setIsOpen(!isOpen)}
-                                    className="text-4xl hover:text-orange-600 text-inact-green" />
+                                    className="text-4xl hover:text-orange-600 text-inact-green cursor pointer" />
                 </div>
             </>
             }
