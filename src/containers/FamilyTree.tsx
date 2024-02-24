@@ -4,6 +4,7 @@ import Tree, { TreeNodeDatum } from "react-d3-tree";
 import { OuterCard, TreeCard } from "../components/cards.tsx";
 import { SVGProps, useEffect, useState } from "react";
 import { IoIosFemale, IoIosMale } from "react-icons/io";
+import { GiFamilyTree } from "react-icons/gi";
 
 function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
     const MIN_NODE_WIDTH = 200;
@@ -20,6 +21,7 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
     const [nodeWidth, setNodeWidth] = useState(Math.min(initialWidth, MAX_NODE_WIDTH));
     const [nodeHeight, setNodeHeight] = useState(Math.min(initialHeight, MAX_NODE_HEIGHT));
     const [zoomLevel, setZoomLevel] = useState(zoom);
+    const [isHorizontal, setIsHorizontal] = useState(window.innerWidth > window.innerHeight);
 
     useEffect(() => {
         function handleResize() {
@@ -29,6 +31,7 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
             setNodeWidth(Math.min(newWidth, MAX_NODE_WIDTH));
             setNodeHeight(Math.min(newHeight, MIN_NODE_HEIGHT));
             setZoomLevel(newZoom);
+            setIsHorizontal(window.innerWidth > window.innerHeight);
         }
 
         window.addEventListener("resize", handleResize);
@@ -42,18 +45,22 @@ function FamilyTree({ familyMember }: { familyMember: IFamilyMember }) {
                     <div className="absolute w-full text-center text-3xl max-sm:text-xl text-inact-green">
                         Family Tree
                     </div>
+                    <ToolBar
+                        isHorizontal={isHorizontal}
+                        setIsHorizontal={setIsHorizontal}
+                    />
                     <Tree
                         svgClassName={"hover:[&+h2]:hidden"}
                         data={familyMember.getTreeData()}
-                        orientation={nodeWidth > nodeHeight ? "horizontal" : "vertical"}
+                        orientation={isHorizontal ? "horizontal" : "vertical"}
                         translate={
-                            nodeWidth > nodeHeight
+                            isHorizontal
                                 ? { x: nodeWidth / 2, y: nodeHeight * 1.5 }
                                 : { x: nodeWidth / 1.25, y: nodeHeight / 2 }
                         }
                         collapsible={false}
                         nodeSize={
-                            nodeWidth > nodeHeight
+                            isHorizontal
                                 ? { x: nodeWidth * 2, y: nodeHeight }
                                 : { x: nodeWidth, y: nodeHeight * 1.5 }
                         }
@@ -96,6 +103,36 @@ function FamilyMember({ nodeData, foreignObjectProps = {} }: IFamilyMemberProps)
                 </TreeCard>
             </foreignObject>
         </>
+    );
+}
+
+
+interface IToolBarProps {
+    isHorizontal: boolean;
+    setIsHorizontal: (isHorizontal: boolean) => void;
+}
+
+function ToolBar({ isHorizontal, setIsHorizontal }: IToolBarProps) {
+    return (
+        <div className="absolute bottom-0 right-0 flex gap-2 bg-slate-200 opacity-30 p-2 rounded-tl-3xl w-40">
+            <div
+                className="flex justify-between gap-2 select-none p-2 rounded-full cursor-pointer w-full"
+                onClick={() => setIsHorizontal(!isHorizontal)}
+            >
+                <GiFamilyTree
+                    className={`text-xl transform
+                        ${isHorizontal ? "rotate-180" : "rotate-90"}
+                    `}
+                />
+                <div>
+                    {
+                        isHorizontal
+                            ? "Horizontal"
+                            : "Vertical"
+                    }
+                </div>
+            </div>
+        </div>
     );
 }
 
