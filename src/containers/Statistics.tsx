@@ -41,7 +41,7 @@ function AgeBarChart() {
 
 	return <OuterCard>
 		<div className="p-4 h-[60vh]">
-			<div className="text-inact-green text-3xl text-center">Ages in the family</div>
+			<div className="text-inact-green text-3xl max-sm:text-xl text-center">Ages in the family</div>
 			<div className="h-full pb-8 max-sm:pb-14 w-full">
 				<Bar data={data} options={options}/>
 			</div>
@@ -61,7 +61,7 @@ function ShoeSizeStatistics({familyMembers}: IShoeSizeStatisticsProps) {
 
 	return (
 		<OuterCard>
-			<div className="text-inact-green text-3xl text-center pt-4 max-md:pb-10">
+			<div className="text-inact-green text-3xl max-sm:text-xl text-center pt-4 max-md:pb-10">
 				Average shoe sizes
 				<FaShoePrints className="text-4xl inline ml-2 max-md:hidden"/>
 			</div>
